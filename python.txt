@@ -1,0 +1,26 @@
+import os
+import subprocess
+
+def git_push(repo_path, branch_name='main'):
+    try:
+        # Change directory to the Git repository
+        os.chdir(repo_path)
+        
+        # Add all changes to the staging area
+        subprocess.run(['git', 'add', '.'])
+        
+        # Commit changes
+        subprocess.run(['git', 'commit', '-m', 'Automated commit'])
+        
+        # Push changes to GitHub
+        subprocess.run(['git', 'push', 'origin', branch_name])
+        
+        print("Code pushed to GitHub successfully!")
+    except Exception as e:
+        print("Error:", e)
+
+# Example usage:
+if __name__ == "__main__":
+    repo_path = '/path/to/your/git/repository'
+    branch_name = 'main'  # Change to your branch name if it's different
+    git_push(repo_path, branch_name)
